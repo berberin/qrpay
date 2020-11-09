@@ -1,0 +1,56 @@
+name: bill_qr
+description: A new Flutter application for QR pay on XLM.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.0
+  dio: ^3.0.10
+  flutter_bloc: ^6.0.5
+  http: any
+  percent_indicator: ^2.1.6
+  google_fonts: ^1.1.0
+  # flutter_js: ^0.2.1+0
+  json_annotation: ^3.0.1
+  firebase_core: "0.5.0"
+  cloud_firestore: "^0.14.0+2"
+  firebase_storage: ^4.0.0
+  flutter_secure_storage: ^3.3.3
+  jdenticon_dart: ^1.2.1+1
+  flutter_svg: ^0.19.0
+  pretty_qr_code: ^1.0.1
+  flutter_spinkit: ^4.1.2+1
+  flutter_focus_watcher: ^0.0.1
+  flutter_datetime_picker: ^1.4.0
+  intl: ^0.16.1
+  random_string: ^2.1.0
+  web_socket_channel: ^1.1.0
+  flutter_qr_bar_scanner: ^1.0.2
+  dotted_border: ^1.0.5
+
+  interactive_webview:
+    git:
+      url: https://github.com/duyduong/interactive_webview
+
+dev_dependencies:
+  build_runner: ^1.10.1
+  flutter_launcher_icons: "^0.7.3"
+  flutter_launcher_name: "^0.0.1"
+  json_serializable: ^3.4.1
+  build_verify: ^1.1.1
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/

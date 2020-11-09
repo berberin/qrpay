@@ -1,0 +1,8 @@
+{
+  "CacheTimeMinutes": 60,
+  "HostName" : ["bea.danhabc.xyz"],
+  "CacheDir": "./.cache",
+  "Port": ":7749",
+  "ProductionMode": false,
+  "TLS": true
+}
