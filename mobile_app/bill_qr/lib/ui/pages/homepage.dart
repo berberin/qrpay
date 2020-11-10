@@ -38,6 +38,16 @@ class _HomepageState extends State<Homepage> {
                   children: [
                     Row(
                       children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.refresh,
+                            color: priText,
+                            size: 25,
+                          ),
+                          onPressed: () {
+                            refreshBalance();
+                          },
+                        ),
                         Text(
                           balance != null
                               ? double.parse(balance).toStringAsFixed(2)
@@ -156,7 +166,9 @@ class _HomepageState extends State<Homepage> {
                           MaterialPageRoute(
                             builder: (context) => CreateBillPage(),
                           ),
-                        );
+                        ).then((value) {
+                          refreshBalance();
+                        });
                       },
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                       splashColor: Colors.grey,
@@ -185,7 +197,9 @@ class _HomepageState extends State<Homepage> {
                           MaterialPageRoute(
                             builder: (context) => ScannerPage(),
                           ),
-                        );
+                        ).then((value) {
+                          refreshBalance();
+                        });
                       },
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                       splashColor: Colors.grey,
@@ -201,6 +215,10 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
+    refreshBalance();
+  }
+
+  void refreshBalance() {
     WalletProvider.getBalance().then((value) {
       setState(() {
         balance = value;

@@ -101,6 +101,35 @@ class _CreateBillPageState extends State<CreateBillPage> {
                 height: 25,
               ),
               Center(
+                child: OutlineButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(24)),
+                    //side: BorderSide(color: Colors.red, width: 2),
+                  ),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    child: Text(
+                      "Add item",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  color: priText,
+                  textColor: secText,
+                  onPressed: () async {
+                    showNormalDialog(
+                      context: context,
+                      widget: addItem(),
+                    );
+                  },
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  splashColor: Colors.grey,
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -109,7 +138,7 @@ class _CreateBillPageState extends State<CreateBillPage> {
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                     child: Text(
-                      "CREATE",
+                      "CREATE BILL",
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     ),
@@ -138,16 +167,6 @@ class _CreateBillPageState extends State<CreateBillPage> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            showNormalDialog(
-              context: context,
-              widget: addItem(),
-            );
-          },
-          child: Icon(Icons.library_add),
-          tooltip: "Add item!",
-        ),
         backgroundColor: backgroundColor,
       ),
     );
@@ -175,13 +194,12 @@ class _CreateBillPageState extends State<CreateBillPage> {
             SizedBox(
               height: 20,
             ),
-            Text("Receiver", style: Theme.of(context).textTheme.headline6),
+            Text("Item", style: Theme.of(context).textTheme.headline6),
             SizedBox(
               height: 10,
             ),
             TextForm(
               labelText: "Name of item",
-              hintText: "Coffee size L",
               controller: _nameController,
             ),
             SizedBox(

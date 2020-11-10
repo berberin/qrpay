@@ -35,7 +35,7 @@ class _IssuerPageState extends State<IssuerPage> {
     payerWidgetList = List<PayerWidget>();
     webSocketSession = WebSocketSession(null, widget.billSecret);
     connectWSChannel();
-    testMode = true;
+    testMode = false;
   }
 
   void connectWSChannel() async {

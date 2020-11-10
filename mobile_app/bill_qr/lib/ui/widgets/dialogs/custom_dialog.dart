@@ -1,3 +1,4 @@
+import 'package:bill_qr/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -54,7 +55,7 @@ class AsyncSpinKit extends StatelessWidget {
       child: Center(
         child: Center(
           child: SpinKitChasingDots(
-            color: Colors.red[800],
+            color: priText,
             size: 35,
           ),
         ),
