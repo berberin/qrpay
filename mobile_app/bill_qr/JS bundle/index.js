@@ -5,8 +5,10 @@ const {
   BASE_FEE,
   Networks,
   Operation,
-  Asset
+  Asset,
+  Transaction
 } = require('stellar-sdk');
+var StellarSdk = require('stellar-sdk');
 
 const server = new Server('https://horizon-testnet.stellar.org');
 const baseFee = BASE_FEE;
@@ -39,6 +41,7 @@ const getNativeBalance = async _publicKey => {
 const createFeeBumpTx = async (_privateKey, _to, _amount) => {
   const keypair = Keypair.fromSecret(_privateKey);
   var innerTx;
+  let finalTx;
   const res = await server.loadAccount(keypair.publicKey()).then(account => {
     innerTx = new TransactionBuilder(account, {
       fee: baseFee,
@@ -64,18 +67,19 @@ const createFeeBumpTx = async (_privateKey, _to, _amount) => {
       .setTimeout(180)
       .build();
     innerTx.sign(keypair);
-    return innerTx;
+    finalTx = innerTx.toXDR('base64');
+    return finalTx;
   });
-  return res;
+  return finalTx;
 };
 
 const submitFeeBumpTrx = async (_privateKey, _trxObj) => {
-  console.log(_trxObj);
+  let obj = new Transaction(_trxObj, '', BASE_FEE, networkPassphrase);
   const feeSource = Keypair.fromSecret(_privateKey);
   const feeBumpTxn = new TransactionBuilder.buildFeeBumpTransaction(
     feeSource,
     baseFee,
-    _trxObj,
+    obj,
     networkPassphrase
   );
 
@@ -140,15 +144,15 @@ const transferLumen = (_privateKey, _to, _amount) => {
     });
 };
 
-// createFeeBumpTx(
-//   'SAIO6VONEI2GY2LD32LECMHTKJYANHTOPBXDSPQ7BEXBMQ3PTI2NJMKN',
-//   'GATNAV6NZ77OUJ3K26ZBR2POHNVCVEV3VUPV5ATBLBNITWQDQ5BZWQJR',
-//   100
-// ).then(e => {
-//   submitFeeBumpTrx('SDEOACSWLLCHBOACI3K6EDAB33XM3JQ4NVG6NVGGTJISCTLVP2WRKVHX', e).then(res =>
-//     console.log(res)
-//   );
-// });
+createFeeBumpTx(
+  'SAIO6VONEI2GY2LD32LECMHTKJYANHTOPBXDSPQ7BEXBMQ3PTI2NJMKN',
+  'GATNAV6NZ77OUJ3K26ZBR2POHNVCVEV3VUPV5ATBLBNITWQDQ5BZWQJR',
+  100
+).then(e => {
+  submitFeeBumpTrx('SDEOACSWLLCHBOACI3K6EDAB33XM3JQ4NVG6NVGGTJISCTLVP2WRKVHX', e).then(res =>
+    console.log('done')
+  );
+});
 
 // getPublicKey('SAIO6VONEI2GY2LD32LECMHTKJYANHTOPBXDSPQ7BEXBMQ3PTI2NJMKN').then(e => console.log(e));
 // getNativeBalance('GATNAV6NZ77OUJ3K26ZBR2POHNVCVEV3VUPV5ATBLBNITWQDQ5BZWQJR').then(e =>

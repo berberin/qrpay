@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bill_qr/providers/providers.dart';
@@ -107,15 +106,14 @@ class WalletProvider {
       );
     """);
     dynamic res = await Providers.waitJSMessage(tag);
-    log(jsonEncode(res));
-    return jsonEncode(res);
+    log(res);
+    return res.toString();
   }
 
   static Future<dynamic> createFeebump(String objTx) async {
     log(objTx);
     String tag = randomAlpha(5);
     Providers.jsContext.evalJavascript("""
-      //var innerTrx = JSON.parse('$objTx');
       contract.submitFeeBumpTrx('$privateKey', '$objTx')
       .then(
         value => {
@@ -125,7 +123,7 @@ class WalletProvider {
     """);
     dynamic res = await Providers.waitJSMessage(tag);
     log(res);
-    return res;
+    return res.toString();
   }
 
   static transferLumen(

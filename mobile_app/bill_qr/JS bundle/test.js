@@ -90,7 +90,7 @@ const faucet = async _publicKey => {
 };
 // faucet('SDEOACSWLLCHBOACI3K6EDAB33XM3JQ4NVG6NVGGTJISCTLVP2WRKVHX').then(e => console.log(e));
 
-const createInnerTrx = async (_privateKey, _amount) => {};
+// const createInnerTrx = async (_privateKey, _amount) => {};
 
 // getPublicKey('SBZ7HKBO7AQJYVDWO7GASFHOZM5JUOZ74GRPH25TVF5EWR3OXE6WBRXC');
 
@@ -121,6 +121,24 @@ const createInnerTrx = async (_privateKey, _amount) => {};
 //     console.error('ERROR!', e);
 //   }
 // })();
+
+var obj = {
+  test: {
+    foo: function () {
+      return "I'm a function!";
+    }
+  }
+};
+
+var json = JSON.stringify(obj, function (key, value) {
+  if (typeof value === 'function') {
+    return value.toString();
+  } else {
+    return value;
+  }
+});
+
+console.log(json);
 
 module.exports = {
   createAccount: createAccount,

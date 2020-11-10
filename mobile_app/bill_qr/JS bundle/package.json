@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "js-xdr": "^1.1.4",
+    "json-xdr": "^0.1.1",
     "node-fetch": "^2.6.1",
+    "stellar-base": "^4.0.2",
     "stellar-sdk": "5.0.3",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
