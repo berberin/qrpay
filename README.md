@@ -1,5 +1,7 @@
 # QR Pay
 
+(Moved to https://github.com/lam1980/shamon)
+
 QR Pay is an application made for split bills fast and easily.
 
 Currently on Stellar.
